@@ -1,0 +1,53 @@
+{
+  "company": {
+    "name": "AutoStream",
+    "description": "A SaaS product that provides automated video editing tools for content creators."
+  },
+  "pricing": {
+    "basic_plan": {
+      "name": "Basic Plan",
+      "price": "$29/month",
+      "features": [
+        "10 videos per month",
+        "720p resolution",
+        "Standard editing templates",
+        "Email support"
+      ]
+    },
+    "pro_plan": {
+      "name": "Pro Plan",
+      "price": "$79/month",
+      "features": [
+        "Unlimited videos",
+        "4K resolution",
+        "AI-powered captions",
+        "Advanced editing templates",
+        "24/7 priority support",
+        "Custom branding options"
+      ]
+    }
+  },
+  "policies": {
+    "refund": "No refunds after 7 days of purchase. Refund requests within 7 days will be processed within 3-5 business days.",
+    "support": "24/7 support is available only on the Pro plan. Basic plan users have access to email support during business hours.",
+    "trial": "We offer a 7-day free trial for new users to explore all features."
+  },
+  "faqs": [
+    {
+      "question": "What video formats are supported?",
+      "answer": "AutoStream supports MP4, MOV, AVI, and MKV formats for both import and export."
+    },
+    {
+      "question": "Can I upgrade my plan anytime?",
+      "answer": "Yes, you can upgrade from Basic to Pro at any time. The price difference will be prorated."
+    },
+    {
+      "question": "What platforms can I export to?",
+      "answer": "You can directly export to YouTube, Instagram, TikTok, and download for other platforms."
+    },
+    {
+      "question": "How does AI captioning work?",
+      "answer": "Our AI automatically transcribes your video and generates accurate captions in multiple languages. This feature is available on the Pro plan."
+    }
+  ]
+}
