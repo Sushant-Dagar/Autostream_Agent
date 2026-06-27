@@ -339,7 +339,7 @@ def create_agent(llm_provider: str = "openai"):
     elif llm_provider == "google":
         from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 
-        llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.7)
+        llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash", temperature=0.7)
         embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001")
 
     elif llm_provider == "anthropic":
