@@ -15,3 +15,4 @@ langchain-anthropic>=0.2.0    # For Claude 3 Haiku
 
 # Utilities
 python-dotenv>=1.0.0
+streamlit>=1.38.0
