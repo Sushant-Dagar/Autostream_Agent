@@ -37,18 +37,38 @@ PROVIDER_ENV_VAR = {
 }
 env_var = PROVIDER_ENV_VAR[provider]
 
-# Prefer a key already set as a secret/env var (e.g. on Streamlit Cloud);
-# otherwise let the visitor paste their own for the session only.
-default_key = os.environ.get(env_var, "")
-api_key = st.sidebar.text_input(
-    f"{env_var}",
-    value=default_key,
-    type="password",
-    help="Stored only in this browser session, never saved.",
-)
 
-if api_key:
-    os.environ[env_var] = api_key
+def get_server_side_key(name: str) -> str:
+    """Look for a key configured by the app owner (Streamlit Cloud secrets,
+    or a local env var) — never something typed by a visitor."""
+    try:
+        if name in st.secrets:
+            return st.secrets[name]
+    except Exception:
+        pass  # st.secrets raises if no secrets.toml exists at all (e.g. local run)
+    return os.environ.get(name, "")
+
+
+server_key = get_server_side_key(env_var)
+
+if server_key:
+    # A key is already configured by the app owner — use it silently.
+    # NEVER echo it back into a widget; that exposes it in the page's HTML/JS
+    # regardless of type="password" masking.
+    api_key = server_key
+    os.environ[env_var] = server_key
+    st.sidebar.success(f"{provider.capitalize()} is ready to go ✅")
+else:
+    # No server-side key configured — ask the visitor for their own.
+    # This box stays EMPTY by default; we never pre-fill it with a real key.
+    api_key = st.sidebar.text_input(
+        f"{env_var}",
+        value="",
+        type="password",
+        help="Used only for this browser session, never stored or logged.",
+    )
+    if api_key:
+        os.environ[env_var] = api_key
 
 st.sidebar.divider()
 if st.sidebar.button("🔄 Reset conversation"):
